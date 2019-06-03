@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Tutores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${tutores}" class="container my-5">
+                    <p class="my-5">
+                        <a href="/tutores/signup" class="btn btn-primary"><i class="fas fa-user-plus ml-2">Adicionar tutor</i></a>
+                    </p>
+                    <div class="col-md-10">
+                        <h2 th:case="null">Nenhum tutor cadastrado!</h2>
+                        <div th:case="*">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+										<th>Nome</th>
+										<th>CPF</th>
+										<th>Telefone</th>
+										<th>E-mail</th>
+										<th>Estado</th>
+										<th>Cidade</th>
+										<th>CEP</th>
+										<th>Número</th>
+                                        <th>Complemento</th>
+                                        <th></th>
+										<th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="tutor : ${tutores}">
+                                    	<td th:text="${tutor.codigo}"></td>
+										<td th:text="${tutor.nome}"></td>
+										<td th:text="${tutor.cpf}"></td>
+										<td th:text="${tutor.telefone}"></td>
+										<td th:text="${tutor.email}"></td>
+										<td th:text="${tutor.estado}"></td>
+										<td th:text="${tutor.cidade}"></td>
+										<td th:text="${tutor.cep}"></td>
+										<td th:text="${tutor.numero}"></td>
+										<td th:text="${tutor.complemento}"></td>
+                                        <td><a th:href="@{/tutores/edit/{codigo}(codigo=${tutor.codigo})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/tutores/delete/{codigo}(codigo=${tutor.codigo})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
