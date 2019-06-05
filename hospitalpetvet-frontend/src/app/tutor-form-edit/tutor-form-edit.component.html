@@ -1,0 +1,159 @@
+<div class="card my-5">
+  <div class="card-body">
+      <div class="row">
+          <div class="col-6">
+            <form (ngSubmit)="onUpdate(tutor)" #userForm="ngForm">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="codigo">Codigo</span>
+                    </div>
+                    <input type="text" [(ngModel)]="tutor.codigo" 
+                      class="form-control" id="codigo" name="codigo" aria-describedby="codigo" disabled="true"
+                      required #name="ngModel">
+                  </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="nome">Nome</span>
+                </div>
+                <input type="text" [(ngModel)]="tutor.nome" 
+                  class="form-control" id="nome" name="nome" aria-describedby="nome" placeholder="Digite o nome do Tutor"
+                  required #name="ngModel">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="cpf">CPF</span>
+                  </div>
+                  <input type="text" [(ngModel)]="tutor.cpf" 
+                  class="form-control" id="cpf" name="cpf" aria-describedby="cpf" placeholder="Digite o CPF"
+                  required #name="ngModel">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="telefone">Telefone</span>
+                  </div>
+                <input type="text" [(ngModel)]="tutor.telefone" 
+                class="form-control" id="telefone" name="telefone" aria-describedby="telefone" placeholder="Digite o Telefone"
+                required #name="ngModel">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="email">E-mail</span>
+                    </div>
+                <input type="text" [(ngModel)]="tutor.email" 
+                class="form-control" id="email" name="email" aria-describedby="email" placeholder="Digite o E-mail"
+                required #name="ngModel">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="estado">Estado</span>
+                    </div>
+                <input type="text" [(ngModel)]="tutor.estado" 
+                class="form-control" id="estado" name="estado" aria-describedby="estado" placeholder="Digite o Estado"
+                required #name="ngModel">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="cidade">Cidade</span>
+                    </div>
+                <input type="text" [(ngModel)]="tutor.cidade" 
+                class="form-control" id="cidade" name="cidade" aria-describedby="cidade" placeholder="Digite a Cidade"
+                required #name="ngModel">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="cep">CEP</span>
+                    </div>
+                <input type="text" [(ngModel)]="tutor.cep" 
+                class="form-control" id="cep" name="cep" aria-describedby="cep" placeholder="Digite o CEP"
+                required #name="ngModel">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="numero">Número</span>
+                    </div>
+                <input type="text" [(ngModel)]="tutor.numero" 
+                class="form-control" id="numero" name="numero" aria-describedby="cep" placeholder="Digite o Número"
+                required #name="ngModel">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="complemento">Complemento</span>
+                    </div>
+                <input type="text" [(ngModel)]="tutor.complemento" 
+                class="form-control" id="complemento" name="complemento" aria-describedby="complemento" placeholder="Digite o Complemento"
+                required #name="ngModel">
+              </div>  
+              <button type="submit" [disabled]="!tutorForm.form.valid" class="btn btn-info">Salvar</button>
+            </form>
+          </div>
+    
+          
+          <div class="col-6">
+            <table class="table table-bordered table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Data nascimento</th>
+                  <th scope="col">Peso</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let animal of tutor.animais">
+                  <td>{{ animal.nome }}</td>
+                  <td>{{ animal.dataNasc }}</td>
+                  <td>{{ animal.peso }}</td>
+                  <td><button (click)="onUpdateAnimal(animal)" class="btn btn-primary">Editar</button></td>
+                  <td><button (click)="onRemoveAnimal(animal)" class="btn btn-danger">Excluir</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <button data-toggle="modal" data-target="#modalExemplo" class="btn btn-primary">Adicionar animal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Adicionar animal</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="nome">Nome</span>
+                  </div>
+                  <input type="text" [(ngModel)]="animal.nome" 
+                    class="form-control" id="nome" name="nome" aria-describedby="nome" placeholder="Digite o nome do animal"
+                    required #name="ngModel">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="idade">Data nascimento</span>
+                    </div>
+                    <input type="text" [(ngModel)]="animal.dataNasc" 
+                    class="form-control" id="idade" name="dataNasc" aria-describedby="dataNasc" placeholder="Digite a data de nascimento do animal"
+                    required #name="ngModel">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="peso">Peso</span>
+                    </div>
+                  <input type="text" [(ngModel)]="animal.peso" 
+                  class="form-control" id="peso" name="peso" aria-describedby="peso" placeholder="Digite o peso do animal"
+                  required #name="ngModel">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button type="button" (click)="onAddAnimal(animal)" data-dismiss="modal" class="btn btn-primary">Salvar</button>
+            </div>
+          </div>
+  </div>
+</div>
