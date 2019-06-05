@@ -32,5 +32,5 @@ export class TutorService {
 
   public createTutor(tutor: Tutor) {
     return this.http.post<Tutor>(this.tutorUrl, tutor);
-}
+  }
 }

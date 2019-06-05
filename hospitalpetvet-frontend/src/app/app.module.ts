@@ -9,13 +9,15 @@ import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { TutorFormComponent } from './tutor-form/tutor-form.component';
 import { TutorFormEditComponent } from './tutor-form-edit/tutor-form-edit.component'
 import { TutorService } from './service/tutor-service.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TutorListComponent,
     TutorFormComponent,
-    TutorFormEditComponent
+    TutorFormEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
