@@ -1,5 +1,7 @@
 <div class="card my-5">
   <div class="card-body">
+      <h2><b>Editar tutor</b></h2>
+      <br/>
       <div class="row">
           <div class="col-6">
             <form (ngSubmit)="onUpdate(tutor)" #userForm="ngForm">
@@ -86,7 +88,6 @@
               <button type="submit" [disabled]="!tutorForm.form.valid" class="btn btn-info">Salvar</button>
             </form>
           </div>
-    
           
           <div class="col-6">
             <table class="table table-bordered table-striped">

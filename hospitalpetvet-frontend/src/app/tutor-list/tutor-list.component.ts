@@ -11,7 +11,6 @@ import { TutorFormEditComponent } from '../tutor-form-edit/tutor-form-edit.compo
 })
 
 export class TutorListComponent implements OnInit {
-
   tutores: Tutor[];
 
   constructor(private tutorService: TutorService, private router: Router) {
