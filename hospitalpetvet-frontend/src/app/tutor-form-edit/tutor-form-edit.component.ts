@@ -34,7 +34,9 @@ export class TutorFormEditComponent implements OnInit {
   }
 
   onRemoveAnimal(animal: Animal){
-    this.tutor.animais.filter(obj => obj !== animal);
+    const index: number = this.tutor.animais.indexOf(animal);
+    if (index !== -1) 
+        this.tutor.animais.splice(index, 1); 
   }
 
   ngOnInit() {
