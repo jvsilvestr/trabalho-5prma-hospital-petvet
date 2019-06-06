@@ -13,14 +13,14 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name = "animal")
-@Getter @Setter
-@EqualsAndHashCode(of = {"codigo"})
 public class Animal {
 
     @Id

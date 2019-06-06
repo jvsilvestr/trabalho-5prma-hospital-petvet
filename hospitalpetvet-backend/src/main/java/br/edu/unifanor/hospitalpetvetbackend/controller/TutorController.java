@@ -33,7 +33,7 @@ public class TutorController {
     }
 
     @PostMapping
-    public Tutor create(@RequestBody Tutor tutor){
+    public Tutor create(@RequestBody Tutor tutor) {
         Tutor tutorReturn = tutorRepository.save(tutor);
         for (Animal animal : tutor.getAnimais()){
             animal.setTutor(tutor);
@@ -42,34 +42,45 @@ public class TutorController {
         return tutorReturn;
     }
 
-    @GetMapping(path = {"/{codigo}"})
-    public Tutor findOne(@PathVariable("codigo") long codigo){
-        return tutorRepository.findById(codigo).get();
+    @GetMapping("/{codigo}")
+    public Tutor findOne(@PathVariable("codigo") long codigo) {
+        Tutor tutor;
+        tutor = tutorRepository.findById(codigo).get();
+        tutor.setAnimais(animalRepository.findAllByTutor(tutor));
+        return tutor;
     }
 
     @PutMapping
-    public Tutor update(@RequestBody Tutor tutor){
+    public Tutor update(@RequestBody Tutor tutor) {
         Tutor tutorReturn = tutorRepository.save(tutor);
-        if(tutor.getAnimais() != null)
-            for (Animal animal : tutor.getAnimais()){
+        if(tutor.getAnimais() != null) {
+            for (Animal animal : tutor.getAnimais()) {
                 animal.setTutor(tutor);
                 animalRepository.save(animal);
             }
+        }
         return tutorReturn;
     }
 
-    @DeleteMapping(path ={"/{codigo}"})
+    @DeleteMapping("/{codigo}")
     public Tutor delete(@PathVariable("codigo") long codigo) {
         Tutor tutor = tutorRepository.findById(codigo).get();
         if (tutor != null){
+            List<Animal> animaisTutor = animalRepository.findAllByTutor(tutor);
+            if (animaisTutor != null)
+                animalRepository.deleteAll(animaisTutor);
             tutorRepository.delete(tutor);
         }
         return tutor;
     }
 
     @GetMapping
-    public List<Tutor> findAll(){
-        return (List<Tutor>) tutorRepository.findAll();
+    public List<Tutor> findAll() {
+        List<Tutor> tutores = (List<Tutor>) tutorRepository.findAll();
+        for (Tutor tutor : tutores) {
+            tutor.setAnimais(animalRepository.findAllByTutor(tutor));
+        }
+        return tutores;
     }
 
 }
