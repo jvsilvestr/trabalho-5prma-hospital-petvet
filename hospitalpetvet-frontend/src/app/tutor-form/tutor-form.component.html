@@ -7,7 +7,7 @@
         <form (ngSubmit)="onSubmit()" #userForm="ngForm">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="nome">Nome</span>
+              <span class="input-group-text" id="nome"><i class="fas fa-user"></i></span>
             </div>
             <input type="text" [(ngModel)]="tutor.nome" 
               class="form-control" id="nome" name="nome" aria-describedby="nome" placeholder="Digite o nome do Tutor"
@@ -15,7 +15,7 @@
           </div>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                  <span class="input-group-text" id="cpf">CPF</span>
+                  <span class="input-group-text" id="cpf"><i class="fas fa-hashtag"></i></span>
               </div>
               <input type="text" [(ngModel)]="tutor.cpf" 
               class="form-control" id="cpf" name="cpf" aria-describedby="cpf" placeholder="Digite o CPF"
@@ -23,7 +23,7 @@
           </div>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                  <span class="input-group-text" id="telefone">Telefone</span>
+                  <span class="input-group-text" id="telefone"><i class="fas fa-tty"></i></span>
               </div>
             <input type="text" [(ngModel)]="tutor.telefone" 
             class="form-control" id="telefone" name="telefone" aria-describedby="telefone" placeholder="Digite o Telefone"
@@ -31,7 +31,7 @@
           </div>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                  <span class="input-group-text" id="email">E-mail</span>
+                  <span class="input-group-text" id="email"><i class="fas fa-envelope"></i></span>
                 </div>
             <input type="text" [(ngModel)]="tutor.email" 
             class="form-control" id="email" name="email" aria-describedby="email" placeholder="Digite o E-mail"
@@ -39,7 +39,7 @@
           </div>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                  <span class="input-group-text" id="estado">Estado</span>
+                  <span class="input-group-text" id="estado"><i class="fas fa-city"></i></span>
                 </div>
             <input type="text" [(ngModel)]="tutor.estado" 
             class="form-control" id="estado" name="estado" aria-describedby="estado" placeholder="Digite o Estado"
@@ -47,7 +47,7 @@
           </div>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                  <span class="input-group-text" id="cidade">Cidade</span>
+                  <span class="input-group-text" id="cidade"><i class="fas fa-city"></i></span>
                 </div>
             <input type="text" [(ngModel)]="tutor.cidade" 
             class="form-control" id="cidade" name="cidade" aria-describedby="cidade" placeholder="Digite a Cidade"
@@ -55,7 +55,7 @@
           </div>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                  <span class="input-group-text" id="cep">CEP</span>
+                  <span class="input-group-text" id="cep"><i class="fas fa-hashtag"></i></span>
                 </div>
             <input type="text" [(ngModel)]="tutor.cep" 
             class="form-control" id="cep" name="cep" aria-describedby="cep" placeholder="Digite o CEP"
@@ -63,7 +63,7 @@
           </div>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                  <span class="input-group-text" id="numero">Número</span>
+                  <span class="input-group-text" id="numero"><i class="fas fa-hashtag"></i></span>
                 </div>
             <input type="text" [(ngModel)]="tutor.numero" 
             class="form-control" id="numero" name="numero" aria-describedby="cep" placeholder="Digite o Número"
@@ -71,7 +71,7 @@
           </div>
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                  <span class="input-group-text" id="complemento">Complemento</span>
+                  <span class="input-group-text" id="complemento"><i class="fas fa-city"></i></span>
                 </div>
             <input type="text" [(ngModel)]="tutor.complemento" 
             class="form-control" id="complemento" name="complemento" aria-describedby="complemento" placeholder="Digite o Complemento"
@@ -80,7 +80,6 @@
           <button type="submit" [disabled]="!tutorForm.form.valid" class="btn btn-info">Salvar</button>
         </form>
       </div>
-
       
       <div class="col-6">
         <table class="table table-bordered table-striped">
@@ -121,7 +120,7 @@
         <div class="modal-body">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="nome">Nome</span>
+                <span class="input-group-text" id="nome"><i class="fas fa-paw"></i></span>
               </div>
               <input type="text" [(ngModel)]="animal.nome" 
                 class="form-control" id="nome" name="nome" aria-describedby="nome" placeholder="Digite o nome do animal"
@@ -129,7 +128,7 @@
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="idade">Data nascimento</span>
+                    <span class="input-group-text" id="idade"><i class="fas fa-calendar"></i></span>
                 </div>
                 <input type="text" [(ngModel)]="animal.dataNasc" 
                 class="form-control" id="idade" name="dataNasc" aria-describedby="dataNasc" placeholder="Digite a data de nascimento do animal"
@@ -137,7 +136,7 @@
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="peso">Peso</span>
+                    <span class="input-group-text" id="peso"><i class="fas fa-weight"></i></span>
                 </div>
               <input type="text" [(ngModel)]="animal.peso" 
               class="form-control" id="peso" name="peso" aria-describedby="peso" placeholder="Digite o peso do animal"
