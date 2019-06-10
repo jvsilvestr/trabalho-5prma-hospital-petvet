@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unifanor.hospitalpetvetbackend.entity.Animal;
+import br.edu.unifanor.hospitalpetvetbackend.entity.Tutor;
 import br.edu.unifanor.hospitalpetvetbackend.repository.AnimalRepository;
+import br.edu.unifanor.hospitalpetvetbackend.repository.TutorRepository;
 
 @RestController
 @RequestMapping("/animal")
@@ -22,15 +24,23 @@ import br.edu.unifanor.hospitalpetvetbackend.repository.AnimalRepository;
 public class AnimalController {
 
     private final AnimalRepository animalRepository;
+    private final TutorRepository tutorRepository;
 
     @Autowired
-    public AnimalController(AnimalRepository animalRepository) {
+    public AnimalController(AnimalRepository animalRepository, TutorRepository tutorRepository) {
         this.animalRepository = animalRepository;
+        this.tutorRepository = tutorRepository;
     }
 
     @GetMapping
     public List<Animal> findAll() {
         return (List<Animal>) animalRepository.findAll();
+    }
+
+    @GetMapping("/tutor/{codigo}")
+    public List<Animal> findAllByTutor(@PathVariable("codigo") Long codigo) {
+        Tutor tutor = tutorRepository.findById(codigo).get();
+        return (List<Animal>) animalRepository.findAllByTutor(tutor);
     }
 
     @PostMapping
