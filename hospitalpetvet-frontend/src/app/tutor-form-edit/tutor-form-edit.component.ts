@@ -31,13 +31,17 @@ export class TutorFormEditComponent implements OnInit {
   
   onUpdate(tutor: Tutor){
 
-    this.tutorService.updateTutor(tutor).subscribe(data =>{
-      var animais = new Array<Animal>();
+    var animais : Array<Animal>;
 
-      /* Obtêm os animais cadastrados para o tutor */
-      this.animalService.getAnimalByTutorId(Number.parseInt(tutor.codigo)).subscribe(data => {
-        animais = data;
-      });
+    /* Obtêm os animais cadastrados para o tutor */
+    this.animalService.getAnimalByTutorId(Number.parseInt(tutor.codigo)).subscribe(data => {
+      animais = data;
+    });
+
+    if (animais == null)
+      animais = new Array<Animal>();
+
+    this.tutorService.updateTutor(tutor).subscribe(data =>{
 
       /* Se a lista não tiver nenhum animal, remove todos */
       if (tutor.animais == null || tutor.animais.length == 0){
@@ -64,6 +68,16 @@ export class TutorFormEditComponent implements OnInit {
             else 
               this.animalService.updateAnimal(animal).subscribe();
           }
+        });
+        animais.forEach((animal: Animal) => {
+          var index = tutor.animais.findIndex((animalAux:Animal) => { 
+            if (animalAux.codigo == animal.codigo)
+              return true;
+            else
+              return false;
+          });
+          if (index <= -1)
+            this.animalService.deleteAnimal(animal).subscribe();
         });
       }
       this.gotoTutorList();
