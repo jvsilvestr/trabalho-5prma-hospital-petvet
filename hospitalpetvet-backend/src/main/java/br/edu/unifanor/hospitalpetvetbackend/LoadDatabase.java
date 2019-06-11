@@ -41,6 +41,6 @@ class LoadDatabase {
   }
 
   Animal getFilledAnimal(Tutor tutor, int id){
-    return new Animal(0l, tutor, "Animal"+id, new Date(2015, 10, 10), 15.0f);
+    return new Animal(0l, tutor, "Animal"+id, Date.valueOf("2010-01-10"), 15.0f);
   }
 }

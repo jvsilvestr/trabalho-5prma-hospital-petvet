@@ -25,30 +25,27 @@ export class TutorFormEditComponent implements OnInit {
   }
 
   onAddAnimal(animal : Animal){
-    if(animal.codigo == 0)
+    if(animal.codigo == null){
       this.tutor.animais.push(animal);
       this.animal = new Animal();
+    }
   }
 
   onUpdateAnimal(animal : Animal){
     this.animal = animal;
   }
 
+  onBeforeAdd(){
+    this.animal = new Animal();
+  } 
+
   onUpdate(tutor: Tutor){
-    var animais: Array<Animal>;
-
-
-    /* Obtêm os animais cadastrados para o tutor */
-    this.animalService.getAnimalByTutorId(Number.parseInt(tutor.codigo)).subscribe(data => {
-      animais = data;
-    });
-
     var animais : Array<Animal>;
 
     /* Obtêm os animais cadastrados para o tutor */
     this.animalService.getAnimalByTutorId(Number.parseInt(tutor.codigo)).subscribe(data => {
       animais = data;
-    });
+   
 
     if (animais == null)
       animais = new Array<Animal>();
@@ -107,6 +104,7 @@ export class TutorFormEditComponent implements OnInit {
       }
       this.gotoTutorList();
     }); 
+  });
   }
 
   onRemoveAnimal(animal: Animal){

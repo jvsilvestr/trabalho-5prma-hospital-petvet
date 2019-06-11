@@ -55,7 +55,11 @@ public class AnimalController {
 
     @PutMapping
     public Animal update(@RequestBody Animal animal) {
-        return animalRepository.save(animal);
+        Animal animalAux = animalRepository.findById(animal.getCodigo()).get();
+        animalAux.setNome(animal.getNome());
+        animalAux.setDataNasc(animal.getDataNasc());
+        animalAux.setPeso(animal.getPeso());
+        return animalRepository.save(animalAux);
     }
 
     @DeleteMapping("/{codigo}")
