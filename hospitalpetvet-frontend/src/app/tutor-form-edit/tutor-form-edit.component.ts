@@ -28,21 +28,25 @@ export class TutorFormEditComponent implements OnInit {
     this.tutor.animais.push(animal);
     this.animal = new Animal();
   }
-  
+
+  onUpdateAnimal(animal : Animal){
+    this.animal = animal;
+  }
+
   onUpdate(tutor: Tutor){
+    var animais: Array<Animal>;
+
+    /* Obtêm os animais cadastrados para o tutor */
+    this.animalService.getAnimalByTutorId(Number.parseInt(tutor.codigo)).subscribe(data => {
+      animais = data;
+    });
 
     this.tutorService.updateTutor(tutor).subscribe(data =>{
-      var animais = new Array<Animal>();
-
-      /* Obtêm os animais cadastrados para o tutor */
-      this.animalService.getAnimalByTutorId(Number.parseInt(tutor.codigo)).subscribe(data => {
-        animais = data;
-      });
 
       /* Se a lista não tiver nenhum animal, remove todos */
       if (tutor.animais == null || tutor.animais.length == 0){
         animais.forEach((animal: Animal) => {
-          this.animalService.deleteAnimal(animal);
+          this.animalService.deleteAnimal(animal).subscribe();
         });
       }else{
         tutor.animais.forEach((animal: Animal) => {
@@ -65,6 +69,17 @@ export class TutorFormEditComponent implements OnInit {
               this.animalService.updateAnimal(animal).subscribe();
           }
         });
+        if(animais != null)
+          animais.forEach((animal: Animal) => {
+            var index = tutor.animais.findIndex((animalAux:Animal) => { 
+              if (animalAux.codigo == animal.codigo)
+                return true;
+              else
+                return false;
+            });
+            if (index <= -1)
+                this.animalService.deleteAnimal(animal).subscribe();
+          });
       }
       this.gotoTutorList();
     }); 
