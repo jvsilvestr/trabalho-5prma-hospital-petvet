@@ -53,14 +53,16 @@ export class TutorFormEditComponent implements OnInit {
             });
           /* Verifica se o registro foi eliminado, se sim, elimina do banco */  
           }else{
-            var index = tutor.animais.findIndex((animalAux:Animal) => { 
+            var index = animais.findIndex((animalAux:Animal) => { 
               if (animalAux.codigo == animal.codigo)
                 return true;
               else
                 return false;
             });
             if (index <= -1)
-              this.animalService.deleteAnimal(animal);
+              this.animalService.deleteAnimal(animal).subscribe();
+            else 
+              this.animalService.updateAnimal(animal).subscribe();
           }
         });
       }
